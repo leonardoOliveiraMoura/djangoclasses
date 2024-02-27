@@ -1,6 +1,8 @@
 
 from django.urls import resolve, reverse
 from recipes import views
+from utils.recipes.factory import make_recipe
+from unittest.mock import patch
 
 from .test_recipe_base import RecipeTestBase
 
@@ -91,6 +93,7 @@ class RecipeViewsTest(RecipeTestBase):
         url = reverse('recipes:search')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+    
 
     # def test_recipe_search_term_is_on_page_title_and_escaped(self):
     #      url = reverse('recipes:search') + '?q=<Teste>'

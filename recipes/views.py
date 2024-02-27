@@ -7,13 +7,19 @@ from recipes.models import Recipe
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from django.db.models import Q
 from utils.pagination import make_pagination
+import os
+from django.contrib import messages
+from django.contrib.messages import constants as messages
+
+PER_PAGE = int(os.environ.get('PER_PAGE', 6))
+
 
 def home(request):
     recipes = Recipe.objects.filter(
         is_published=True,
     ).order_by('-id')
     
-    page_obj, pagination_range = make_pagination(request, recipes, 9)
+    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
 
     
     return render(request, 'recipes/pages/home.html', context={
@@ -28,7 +34,13 @@ def category(request, category_id):
         ).order_by('-id')
     )
     
-    page_obj, pagination_range = make_pagination(request, recipes, 9)
+    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
+    
+    messages.error(request, 'Epa, você foi pesquisar algo que eu vi.')
+    messages.success(request, 'Epa, você foi pesquisar algo que eu vi.')
+    messages.info(request, 'Epa, você foi pesquisar algo que eu vi.')
+    
+    messages.add_message(request, messages.INFO, "Hello world.")
      
     return render(request, 'recipes/pages/category.html', context={
         'recipes': page_obj,
@@ -64,7 +76,7 @@ def search(request):
         is_published=True
     ).order_by('-id')
     
-    page_obj, pagination_range = make_pagination(request, recipes, 9)
+    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
     
     return render(request, 'recipes/pages/search.html', {
         'page_title': f'Search for "{search_term}" |',
