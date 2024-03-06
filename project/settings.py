@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
 ]
+
 ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
@@ -122,8 +123,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
+
 SESSION_COOKIE_SECURE = True 
 SESSION_COOKIE_DOMAIN='localhost'
+
 
 MESSAGE_TAGS = {
     constants.DEBUG: 'message-debug',

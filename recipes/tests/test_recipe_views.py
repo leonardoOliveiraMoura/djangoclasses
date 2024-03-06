@@ -94,6 +94,29 @@ class RecipeViewsTest(RecipeTestBase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
     
+    # def test_invalid_page_query_uses_page_one(self):
+    #     for i in range(8):
+    #         kwargs = {'slug': f'r{i}', 'author_data': {'username': f'u{i}'}}
+    #         self.make_recipe(**kwargs)
+            
+
+    #     with patch('recipes.views.PER_PAGE', new=3):
+    #         response = self.client.get(reverse('recipes:home') + '?page=12A')
+    #         self.assertEqual(
+    #             response.context['recipes'].number,
+    #             1
+    #         )
+    #         response = self.client.get(reverse('recipes:home') + '?page=2')
+    #         self.assertEqual(
+    #             response.context['recipes'].number,
+    #             2
+    #         )
+    #         response = self.client.get(reverse('recipes:home') + '?page=3')
+    #         self.assertEqual(
+    #             response.context['recipes'].number,
+    #             3
+    #         )    
+    
 
     # def test_recipe_search_term_is_on_page_title_and_escaped(self):
     #      url = reverse('recipes:search') + '?q=<Teste>'
