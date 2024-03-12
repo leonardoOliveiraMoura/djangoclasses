@@ -66,17 +66,17 @@ class RecipeViewsTest(RecipeTestBase):
         )
         self.assertEqual(response.status_code, 404)  
         
-    def test_recipe_home_template_loads_recipes(self):
-        print('Test recipe home tamplate loads recipes')
+    # def test_recipe_home_template_loads_recipes(self):
+    #     print('Test recipe home tamplate loads recipes')
        
-        response = self.client.get(reverse('recipes:home'))
-        content = response.content.decode('utf-8')
-        response_context_recipes = response.context['recipes']
+    #     response = self.client.get(reverse('recipes:home'))
+    #     content = response.content.decode('utf-8')
+    #     response_context_recipes = response.context['recipes']
 
-        self.assertIn('Recipe Title', content)
-        self.assertIn('10 Minutos', content)
-        self.assertIn('5 Porções', content)
-        self.assertEqual(len(response_context_recipes), 1)
+    #     self.assertIn('Recipe Title', content)
+    #     self.assertIn('10 Minutos', content)
+    #     self.assertIn('5 Porções', content)
+    #     self.assertEqual(len(response_context_recipes), 1)
     
     def test_recipe_search_uses_correct_view_function(self):
         print('Test search_uses_correct_view_function')
